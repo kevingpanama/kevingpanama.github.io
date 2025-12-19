@@ -1,0 +1,211 @@
+---
+title: "The Panama Research and Integrated Sustainability Model (PRISM)"
+subtitle: "Visualización de Datos Geoespaciales"
+author: "K. González, Eliecer Aguilar, A. G. Aizprúa, E. Cedeño, J. E. Sánchez-Galán - Universidad Tecnológica de Panamá"
+format: 
+  dashboard:
+    theme: cosmo
+    nav-buttons:
+      - icon: github
+        href: https://github.com/tu-usuario/prism-dashboard
+---
+
+```{r}
+#| include: false
+library(sf)
+library(dplyr)
+library(jsonlite)
+
+df <- read.csv("final_mapas.csv", check.names = FALSE)
+geojson_sf <- st_read("panama.geojson", quiet = TRUE)
+
+geojson_sf <- geojson_sf %>%
+  left_join(df, by = c("ISO" = "ISO-3166-2"))
+
+st_write(geojson_sf, "panama_data.geojson", delete_dsn = TRUE, quiet = TRUE)
+
+kpis <- data.frame(
+  name = names(df)[3:ncol(df)],
+  label = gsub("\\.", " ", names(df)[3:ncol(df)])
+)
+
+write(toJSON(kpis, pretty = TRUE), "kpis.json")
+```
+
+##  {.sidebar}
+
+### Selecciona un Indicador
+
+```{ojs}
+geodata = FileAttachment("panama_data.geojson").json()
+kpis = FileAttachment("kpis.json").json()
+
+viewof selectedKPI = Inputs.select(
+  kpis,
+  {
+    label: "Indicador:",
+    value: kpis[2].name,
+    format: d => d.label
+  }
+)
+```
+
+------------------------------------------------------------------------
+
+**Información:**
+
+Usa el dropdown para cambiar indicadores. Los colores representan la intensidad del indicador por provincia.
+
+Haz hover sobre las provincias para ver detalles.
+
+## Row {height="100%"}
+
+### Mapa Interactivo
+
+```{ojs}
+{
+  const container = d3.create("div")
+    .style("width", "100%")
+    .style("height", "100%")
+    .style("min-height", "600px");
+  
+  const mapDiv = container.append("div")
+    .attr("id", "map-" + Math.random().toString(36).substr(2, 9))
+    .style("width", "100%")
+    .style("height", "100%");
+  
+  yield container.node();
+  
+  const mapId = mapDiv.attr("id");
+  const map = L.map(mapId).setView([8.537981, -80.782127], 7);
+  
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    maxZoom: 20
+  }).addTo(map);
+  
+  let geojsonLayer = null;
+  let legend = null;
+  
+  function getColor(value, min, max) {
+    if (value === null || value === undefined || isNaN(value)) {
+      return '#808080';
+    }
+    
+    const viridis = [
+      '#440154', '#482878', '#3e4989', '#31688e',
+      '#26828e', '#1f9e89', '#35b779', '#6ece58',
+      '#b5de2b', '#fde724'
+    ];
+    
+    const normalized = (value - min) / (max - min);
+    const index = Math.floor(normalized * (viridis.length - 1));
+    return viridis[Math.max(0, Math.min(index, viridis.length - 1))];
+  }
+  
+  function updateMap() {
+    if (geojsonLayer) {
+      map.removeLayer(geojsonLayer);
+    }
+    if (legend) {
+      map.removeControl(legend);
+    }
+    
+    const values = geodata.features
+      .map(f => f.properties[selectedKPI])
+      .filter(v => v !== null && v !== undefined && !isNaN(v));
+    
+    if (values.length === 0) {
+      geojsonLayer = L.geoJSON(geodata, {
+        style: {
+          fillColor: '#cccccc',
+          weight: 1,
+          opacity: 1,
+          color: 'white',
+          fillOpacity: 0.5
+        }
+      }).addTo(map);
+      return;
+    }
+    
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    
+    geojsonLayer = L.geoJSON(geodata, {
+      style: function(feature) {
+        return {
+          fillColor: getColor(feature.properties[selectedKPI], min, max),
+          weight: 1,
+          opacity: 1,
+          color: 'white',
+          fillOpacity: 0.5
+        };
+      },
+      onEachFeature: function(feature, lyr) {
+        const value = feature.properties[selectedKPI];
+        const displayValue = value !== null && value !== undefined && !isNaN(value)
+          ? value.toLocaleString('es-PA', {maximumFractionDigits: 2})
+          : 'Sin datos';
+        
+        const kpiLabel = kpis.find(k => k.name === selectedKPI)?.label || selectedKPI;
+        
+        lyr.bindTooltip(
+          `<strong>${feature.properties.NOMBRE}</strong><br/>` +
+          `${kpiLabel}: ${displayValue}`,
+          {
+            permanent: false,
+            sticky: true
+          }
+        );
+        
+        lyr.on({
+          mouseover: function(e) {
+            e.target.setStyle({
+              weight: 3,
+              color: '#666',
+              fillOpacity: 0.7
+            });
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+              e.target.bringToFront();
+            }
+          },
+          mouseout: function(e) {
+            geojsonLayer.resetStyle(e.target);
+          }
+        });
+      }
+    }).addTo(map);
+    
+    legend = L.control({position: 'bottomright'});
+    
+    legend.onAdd = function(m) {
+      const div = L.DomUtil.create('div', 'info legend');
+      div.style.cssText = 'padding: 10px; background: white; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.2);';
+      
+      const kpiLabel = kpis.find(k => k.name === selectedKPI)?.label || selectedKPI;
+      
+      div.innerHTML = `<strong style="font-size: 12px;">${kpiLabel}</strong><br/>`;
+      
+      const steps = 5;
+      for (let i = 0; i < steps; i++) {
+        const value = min + (max - min) * (i / (steps - 1));
+        const color = getColor(value, min, max);
+        div.innerHTML += 
+          `<i style="background:${color}; width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7;"></i>` +
+          `<span style="font-size: 11px;">${value.toLocaleString('es-PA', {maximumFractionDigits: 1})}</span><br/>`;
+      }
+      
+      return div;
+    };
+    
+    legend.addTo(map);
+  }
+  
+  updateMap();
+  selectedKPI, updateMap();
+  
+  setTimeout(() => map.invalidateSize(), 100);
+  
+  return container.node();
+}
+```

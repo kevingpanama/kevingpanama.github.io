@@ -1,0 +1,138 @@
+---
+title: "PRISM Dashboard"
+subtitle: "Visualización de Datos Geoespaciales"
+format: 
+  dashboard:
+    theme: cosmo
+---
+
+```{r}
+#| include: false
+library(sf)
+library(dplyr)
+library(jsonlite)
+
+# Leer datos
+df <- read.csv("final_mapas.csv", check.names = FALSE)
+geojson_sf <- st_read("panama.geojson", quiet = TRUE)
+
+# Join
+geojson_sf <- geojson_sf %>%
+  left_join(df, by = c("ISO" = "ISO-3166-2"))
+
+# Guardar GeoJSON con datos unidos
+st_write(geojson_sf, "panama_data.geojson", delete_dsn = TRUE, quiet = TRUE)
+
+# Crear lista de KPIs
+kpis <- data.frame(
+  name = names(df)[3:ncol(df)],
+  label = gsub("\\.", " ", names(df)[3:ncol(df)])
+)
+
+# Guardar KPIs
+write(toJSON(kpis, pretty = TRUE), "kpis.json")
+```
+
+##  {.sidebar}
+
+```{ojs}
+// Cargar datos
+geodata = FileAttachment("panama_data.geojson").json()
+kpis = FileAttachment("kpis.json").json()
+
+viewof selectedKPI = Inputs.select(
+  kpis,
+  {
+    label: "Selecciona Indicador:",
+    value: kpis[2].name,
+    format: d => d.label
+  }
+)
+```
+
+**Información:**
+
+Usa el dropdown para cambiar indicadores.
+
+## Row
+
+### Mapa
+
+```{ojs}
+{
+  L = require("leaflet@1.9.4")
+  
+  const div = d3.create("div")
+    .style("width", "100%")
+    .style("height", "600px");
+  
+  const mapDiv = div.append("div")
+    .attr("id", "map")
+    .style("width", "100%")
+    .style("height", "100%");
+  
+  yield div.node();
+  
+  const map = L.map('map').setView([8.537981, -80.782127], 7);
+  
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+  
+  let layer, legend;
+  
+  function update() {
+    if (layer) map.removeLayer(layer);
+    if (legend) map.removeControl(legend);
+    
+    const vals = geodata.features
+      .map(f => f.properties[selectedKPI])
+      .filter(v => v != null && !isNaN(v));
+    
+    if (vals.length === 0) return;
+    
+    const [min, max] = [Math.min(...vals), Math.max(...vals)];
+    
+    const getColor = v => {
+      if (v == null || isNaN(v)) return '#999';
+      const colors = ['#440154','#31688e','#35b779','#fde724'];
+      const i = Math.floor(((v - min) / (max - min)) * 3);
+      return colors[Math.max(0, Math.min(i, 3))];
+    };
+    
+    layer = L.geoJSON(geodata, {
+      style: f => ({
+        fillColor: getColor(f.properties[selectedKPI]),
+        weight: 1,
+        color: 'white',
+        fillOpacity: 0.6
+      }),
+      onEachFeature: (f, l) => {
+        const val = f.properties[selectedKPI];
+        const label = kpis.find(k => k.name === selectedKPI)?.label;
+        l.bindTooltip(
+          `<b>${f.properties.NOMBRE}</b><br/>${label}: ${val != null ? val.toFixed(2) : 'N/A'}`
+        );
+        l.on({
+          mouseover: e => e.target.setStyle({weight: 3, fillOpacity: 0.8}),
+          mouseout: e => layer.resetStyle(e.target)
+        });
+      }
+    }).addTo(map);
+    
+    legend = L.control({position: 'bottomright'});
+    legend.onAdd = () => {
+      const d = L.DomUtil.create('div');
+      d.style.cssText = 'background:white;padding:10px;border-radius:5px;box-shadow:0 0 15px rgba(0,0,0,0.2)';
+      d.innerHTML = `<b>${kpis.find(k => k.name === selectedKPI)?.label}</b><br/>`;
+      [0, 0.33, 0.66, 1].forEach(i => {
+        const v = min + (max - min) * i;
+        d.innerHTML += `<i style="background:${getColor(v)};width:18px;height:18px;float:left;margin:2px"></i>${v.toFixed(1)}<br/>`;
+      });
+      return d;
+    };
+    legend.addTo(map);
+  }
+  
+  update();
+  selectedKPI, update();
+}
+```

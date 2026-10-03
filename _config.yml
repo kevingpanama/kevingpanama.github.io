@@ -9,7 +9,7 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # Currently available options are "default", "air"
-title                    : "Kevin Gonzalez Ortega"
+title                    : "Kevin González Ortega"
 title_separator          : "-"
 name                     : &name "Kevin González Ortega"
 description              : &description "Kevin González Ortega — data scientist working on psychometrics, educational measurement, and machine learning and AI evaluation."   # Update this with a general description of your site, this is the default if not overridden by a page
@@ -28,17 +28,17 @@ author:
   pronouns         : # example: "she/her"  
   bio              : "Data scientist · Psychometrics & educational measurement · ML & AI evaluation. Fulbright Scholar at Indiana University Bloomington."
   location         : "Bloomington, IN, USA"
-  employer         : "Indiana University Bloomington"
+  employer         : "Indiana University"
   uri              : # URL
   email            : "kevingpanama@gmail.com" 
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : 
+  googlescholar    : "https://scholar.google.com/citations?user=5LFa8m8AAAAJ&hl=es"
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : 
+  orcid            : "https://orcid.org/0000-0003-0437-5136"
   semantic         : # URL
   ssrn             : # URL
   pubmed           : # URL
@@ -88,6 +88,10 @@ publication_category:
     title: 'Journal Articles'
   conferences:
     title: 'Conference Papers'
+  posters:
+    title: 'Conference Posters'
+  theses:
+    title: 'Theses'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
@@ -123,7 +127,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true      # change to true to hide the RSS feed in the footer
   path                   : # blank (default) uses feed.xml
 
 

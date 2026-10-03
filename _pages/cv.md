@@ -57,6 +57,12 @@ Research and projects
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
+Publications
+======
+  <ul>{% for post in site.publications reversed %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
+
 Leadership and service
 ======
 * **Jóvenes Unidos por la Educación**, Panama

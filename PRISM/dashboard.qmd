@@ -22,7 +22,12 @@ geojson_sf <- st_read("panama.geojson", quiet = TRUE)
 geojson_sf <- geojson_sf %>%
   left_join(df, by = c("ISO" = "ISO-3166-2"))
 
-st_write(geojson_sf, "panama_data.geojson", delete_dsn = TRUE, quiet = TRUE)
+# Simplificar geometrías para que el mapa cargue rápido en el navegador
+sf_use_s2(FALSE)
+geojson_sf <- st_simplify(geojson_sf, preserveTopology = TRUE, dTolerance = 0.001)
+
+st_write(geojson_sf, "panama_data.geojson", delete_dsn = TRUE, quiet = TRUE,
+         layer_options = "COORDINATE_PRECISION=5")
 
 kpis <- data.frame(
   name = names(df)[3:ncol(df)],
@@ -37,15 +42,18 @@ write(toJSON(kpis, pretty = TRUE), "kpis.json")
 ### Selecciona un Indicador
 
 ```{ojs}
+//| output: false
 geodata = FileAttachment("panama_data.geojson").json()
 kpis = FileAttachment("kpis.json").json()
+```
 
+```{ojs}
 viewof selectedKPI = Inputs.select(
-  kpis,
+  kpis.map(d => d.name),
   {
     label: "Indicador:",
     value: kpis[2].name,
-    format: d => d.label
+    format: name => kpis.find(k => k.name === name)?.label ?? name
   }
 )
 ```
@@ -79,9 +87,9 @@ Haz hover sobre las provincias para ver detalles.
   const mapId = mapDiv.attr("id");
   const map = L.map(mapId).setView([8.537981, -80.782127], 7);
   
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    maxZoom: 20
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
   }).addTo(map);
   
   let geojsonLayer = null;
@@ -150,7 +158,7 @@ Haz hover sobre las provincias para ver detalles.
         const kpiLabel = kpis.find(k => k.name === selectedKPI)?.label || selectedKPI;
         
         lyr.bindTooltip(
-          `<strong>${feature.properties.NOMBRE}</strong><br/>` +
+          `<strong>${feature.properties.PROVINCIA ?? feature.properties.NOMBRE}</strong><br/>` +
           `${kpiLabel}: ${displayValue}`,
           {
             permanent: false,

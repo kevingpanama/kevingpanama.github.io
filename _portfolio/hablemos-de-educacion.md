@@ -2,7 +2,7 @@
 title: "#HablemosDeEducación19 and Youth Advocacy"
 excerpt: "A citizen advocacy campaign that proposed 19 education policy measures for Panama's 2019 general elections, plus the selection and recruitment platform for the Latin American Citizen Action Laboratory. Jóvenes Unidos por la Educación."
 collection: portfolio
-order: 5
+order: 4
 ---
 
 **Organization:** Jóvenes Unidos por la Educación, Panama

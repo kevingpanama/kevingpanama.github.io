@@ -15,16 +15,15 @@ For ten years I have built data and learning systems at [Fundación Ayudinga](ht
 
 ## Research interests
 
-* **Measurement:** psychometrics, educational assessment, validity and fairness
-* **Machine learning:** AI evaluation, NLP and LLMs, knowledge graphs and network science
-* **Learning analytics:** personalized learning paths, educational technology, missing data
-* **Data for public good:** data governance in education, geospatial data for health and nutrition in Panama
+* **Data Science:** statistical and machine learning modeling, multivariate statistics, missing data, data governance, and learning analytics in education
+* **Psychometrics:** educational and psychological measurement, assessment design, and evidence for reliability, validity and fairness
+* **AI Evaluation:** applying measurement principles to evaluate machine learning models and large language models (LLMs) so their results are valid, reliable and fair
 
 ## Selected publications
 
 {% assign pubs = site.publications | sort: "date" | reverse %}
 {% for post in pubs limit: 3 %}
-* [{{ post.title }}]({{ post.url }}) — *{{ post.venue }}*, {{ post.date | date: "%Y" }}{% if post.paperurl %} · [Link]({{ post.paperurl }}){% endif %}
+* [{{ post.title }}]({{ post.url }}) — *{{ post.venue }}*, {{ post.date | date: "%Y" }}{% if post.language %} · **In {{ post.language }}**{% endif %}{% if post.paperurl %} · [Link]({{ post.paperurl }}){% endif %}
 {% endfor %}
 
 [All publications →](/publications/)

@@ -7,7 +7,7 @@ order: 2
 
 **Role:** Director of Technology and Educational Research (2019–present); previously Backend Lead (2017–2019) and Junior Software Developer (2016–2017)
 
-**Publications:** [IEEE CONCAPAN XLIII (2025)](/publication/2025-11-26-democratizing-data-analytics-in-education) · [Undergraduate thesis on knowledge graphs (2023)](/publication/2023-12-01-grafos-de-conocimiento-rutas-de-aprendizaje)
+**Publications:** [IEEE CONCAPAN XLIII (2025)](/publication/2025-11-26-democratizing-data-analytics-in-education) · [Undergraduate thesis on knowledge graphs (2023, in Spanish)](/publication/2023-12-01-grafos-de-conocimiento-rutas-de-aprendizaje)
 
 [Fundación Ayudinga](https://ayudinga.org) is a nonprofit digital education organization in Panama that offers free educational content and academic support to students in Panama and Latin America.
 
@@ -23,7 +23,7 @@ The foundation's data was spread across many platforms and formats, which made i
 
 ## Knowledge graphs for personalized learning
 
-My undergraduate thesis designed and implemented **knowledge graphs** to build **personalized learning paths** on the Ayudinga platform. [See the thesis →](/publication/2023-12-01-grafos-de-conocimiento-rutas-de-aprendizaje)
+My undergraduate thesis designed and implemented **knowledge graphs** to build **personalized learning paths** on the Ayudinga platform. [See the thesis (in Spanish) →](/publication/2023-12-01-grafos-de-conocimiento-rutas-de-aprendizaje)
 
 ## Leadership
 

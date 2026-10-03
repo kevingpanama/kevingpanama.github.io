@@ -1,13 +1,15 @@
 ---
-title: "Estructuración de un sistema de información geoespacial para el análisis de datos de seguridad alimentaria, intervenciones nutricionales y de salud humana en Panamá"
+title: "Structuring a Geospatial Information System for the Analysis of Food Security, Nutritional Intervention and Human Health Data in Panama"
+original_title: "Estructuración de un sistema de información geoespacial para el análisis de datos de seguridad alimentaria, intervenciones nutricionales y de salud humana en Panamá"
+language: "Spanish"
 collection: publications
 category: posters
 permalink: /publication/2023-09-15-sistema-de-informacion-geoespacial-seguridad-alimentaria
-excerpt: 'Building a geospatial information system for food security and nutrition data in Panama: web scraping and ETL turned Ministry of Health PDF reports into 96 geo-referenced indicators (2003–2014), mapped by province, and the basis of the PRISM nutrition layer. In Spanish.'
+excerpt: 'Building a geospatial information system for food security and nutrition data in Panama: web scraping and ETL turned Ministry of Health PDF reports into 96 geo-referenced indicators (2003–2014), mapped by province, and the basis of the PRISM nutrition layer.'
 date: 2023-09-15
 venue: 'XIX Congreso Nacional de Ciencia y Tecnología – APANAC 2023'
 paperurl: '/files/gonzalez-ortega-2023-apanac-sistema-geoespacial.pdf'
-citation: 'González Ortega, K., Aguilar, E., Aizprúa, A. G., Cedeño, E., &amp; Sánchez-Galán, J. (2023). &quot;Estructuración de un sistema de información geoespacial para el análisis de datos de seguridad alimentaria, intervenciones nutricionales y de salud humana en Panamá.&quot; <i>XIX Congreso Nacional de Ciencia y Tecnología – APANAC 2023</i>, pp. 356–362. https://doi.org/10.33412/apanac.2023.3959'
+citation: 'González Ortega, K., Aguilar, E., Aizprúa, A. G., Cedeño, E., &amp; Sánchez-Galán, J. (2023). &quot;Estructuración de un sistema de información geoespacial para el análisis de datos de seguridad alimentaria, intervenciones nutricionales y de salud humana en Panamá [Structuring a geospatial information system for the analysis of food security, nutritional intervention and human health data in Panama].&quot; <i>XIX Congreso Nacional de Ciencia y Tecnología – APANAC 2023</i>, pp. 356–362. https://doi.org/10.33412/apanac.2023.3959'
 ---
 
 **Authors:** **Kevin González Ortega**, Eliecer Aguilar, Ana Gabriela Aizprúa, Eddy Cedeño, Javier Sánchez-Galán (Universidad Tecnológica de Panamá)<br/>
@@ -15,7 +17,8 @@ citation: 'González Ortega, K., Aguilar, E., Aizprúa, A. G., Cedeño, E., &amp
 **DOI:** [10.33412/apanac.2023.3959](https://doi.org/10.33412/apanac.2023.3959) · **[PDF](/files/gonzalez-ortega-2023-apanac-sistema-geoespacial.pdf)** (open access, CC BY-NC-SA 4.0)<br/>
 **Keywords:** food security, web scraping, geo-referenced indicators, geographic information system, interdisciplinary spatial data analysis
 
-*Title in English: "Structuring a geospatial information system for the analysis of food security, nutritional intervention and human health data in Panama." The paper is in Spanish.*
+**Language:** This paper is published in **Spanish**. The title above is an English translation.<br/>
+**Original title:** *Estructuración de un sistema de información geoespacial para el análisis de datos de seguridad alimentaria, intervenciones nutricionales y de salud humana en Panamá*
 
 ## Summary
 

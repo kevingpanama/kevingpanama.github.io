@@ -7,7 +7,7 @@ order: 1
 
 **Team:** K. González, E. Aguilar, A. G. Aizprúa, E. Cedeño, J. E. Sánchez-Galán (Universidad Tecnológica de Panamá)
 
-**[Open the interactive dashboard →](/PRISM/dashboard.html)** · [Source code](https://github.com/kevingpanama/kevingpanama.github.io/tree/main/PRISM) · Paper: [APANAC 2023](/publication/2023-09-15-sistema-de-informacion-geoespacial-seguridad-alimentaria) ([PDF](/files/gonzalez-ortega-2023-apanac-sistema-geoespacial.pdf), [DOI](https://doi.org/10.33412/apanac.2023.3959))
+**[Open the interactive dashboard →](/PRISM/dashboard.html)** · [Source code](https://github.com/kevingpanama/kevingpanama.github.io/tree/main/PRISM) · Paper: [APANAC 2023](/publication/2023-09-15-sistema-de-informacion-geoespacial-seguridad-alimentaria) (in Spanish) ([PDF](/files/gonzalez-ortega-2023-apanac-sistema-geoespacial.pdf), [DOI](https://doi.org/10.33412/apanac.2023.3959))
 
 ## The problem
 

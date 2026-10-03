@@ -88,6 +88,8 @@ Skills
 
 Professional memberships
 ======
+* American Educational Research Association (AERA), Member
+* National Council on Measurement in Education (NCME), Member
 * IEEE, Member (Oct 2025 – Present)
 * Association for Computing Machinery (ACM), Member (Mar 2019 – Present)
 * Project Management Institute (PMI), Member (Jan 2024 – Present)

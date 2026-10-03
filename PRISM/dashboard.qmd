@@ -7,7 +7,7 @@ format:
     theme: cosmo
     nav-buttons:
       - icon: github
-        href: https://github.com/tu-usuario/prism-dashboard
+        href: https://github.com/kevingpanama/kevingpanama.github.io/tree/main/PRISM
 ---
 
 ```{r}

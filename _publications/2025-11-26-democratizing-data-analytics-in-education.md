@@ -3,7 +3,7 @@ title: "Democratizing Data Analytics in Education: A Governance Strategy for Non
 collection: publications
 category: conferences
 permalink: /publication/2025-11-26-democratizing-data-analytics-in-education
-excerpt: 'Case study of a data engineering and governance framework for Fundación Ayudinga: a Dremio Lakehouse on Huawei Cloud plus a formal governance program (roles, semantic layers, six policies) that raised the organization''s TDWI data-literacy maturity from Basic (Stage 3) to Literate (Stage 4).'
+excerpt: 'Case study of a data engineering and governance framework for Fundación Ayudinga: a cloud-based Dremio Lakehouse plus a formal governance program (roles, semantic layers, six policies) that raised the organization''s TDWI data-literacy maturity from Basic (Stage 3) to Literate (Stage 4).'
 date: 2025-11-26
 venue: '2025 IEEE 43rd Central America and Panama Convention (CONCAPAN XLIII)'
 paperurl: 'https://doi.org/10.1109/concapan66820.2025.11512483'
@@ -34,10 +34,9 @@ The implementation ran in three phases:
 | Component | Technology |
 |---|---|
 | Lakehouse engine | Dremio |
-| Cloud provider | Huawei Cloud |
 | Orchestration | Kubernetes |
 | Containerization | Docker |
-| Storage | Elastic Volume Service (EVS) |
+| Infrastructure | Cloud-based deployment |
 | Data sources | PostgreSQL |
 
 Virtual datasets are organized into **five semantic layers**: Staging → Features → Master Tables → Results → Business Intelligence.

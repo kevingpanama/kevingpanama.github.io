@@ -1,6 +1,6 @@
 ---
 title: "Data Governance and Learning Platform at Fundación Ayudinga"
-excerpt: "A Data Lakehouse (Dremio on Huawei Cloud) and a formal data governance program for a nonprofit e-learning platform in Panama, which raised the organization's TDWI data-literacy maturity from Basic to Literate (IEEE CONCAPAN 2025). Also knowledge graphs for personalized learning paths and an R&D portfolio of 10+ projects."
+excerpt: "A cloud-based Data Lakehouse (Dremio) and a formal data governance program for a nonprofit e-learning platform in Panama, which raised the organization's TDWI data-literacy maturity from Basic to Literate (IEEE CONCAPAN 2025). Also knowledge graphs for personalized learning paths and an R&D portfolio of 10+ projects."
 collection: portfolio
 order: 2
 ---
@@ -16,7 +16,7 @@ order: 2
 The foundation's data was spread across many platforms and formats, which made it hard to measure educational impact. We designed and implemented a three-phase data strategy:
 
 * **Diagnosis:** a TDWI Data Literacy Maturity Assessment across five dimensions placed the organization at *Stage 3, Basic*.
-* **Architecture:** a three-tier **Data Lakehouse** (data producers → warehouse → data consumers) using **Dremio** on **Huawei Cloud**, with Kubernetes, Docker, EVS storage and PostgreSQL sources. Data is organized into five semantic layers, from staging to business intelligence.
+* **Architecture:** a three-tier **Data Lakehouse** (data producers → warehouse → data consumers) using **Dremio** in the cloud, with Kubernetes, Docker and PostgreSQL sources. Data is organized into five semantic layers, from staging to business intelligence.
 * **Governance:** a structure of domains, sources and attributes; four roles (Head of Data Governance, Data Owner, Data Steward and Data Worker) with their own permissions on each layer; and six policies covering naming, documentation, the glossary, access, quality metrics and onboarding new sources.
 
 **Result:** data infrastructure, tools and governance each rose two stages, and overall maturity went from **Basic (3) to Literate (4)**. [Read the paper →](/publication/2025-11-26-democratizing-data-analytics-in-education)

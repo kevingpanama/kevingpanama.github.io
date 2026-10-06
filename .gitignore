@@ -3,3 +3,9 @@
 .RData
 .Ruserdata
 .sass-cache
+
+# Private CV sources (only the compiled PDF is published)
+files/*.tex
+files/*.aux
+files/*.log
+files/*.out

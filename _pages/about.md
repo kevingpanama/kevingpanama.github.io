@@ -11,9 +11,9 @@ I am a **data scientist** and Systems and Computing Engineer working on **psycho
 
 For ten years I have built data and learning systems at [Fundación Ayudinga](https://ayudinga.org), a nonprofit e-learning foundation in Panama, where I am Director of Technology and Educational Research. I direct an R&D portfolio of 10+ projects in machine learning, knowledge management and gamification for education, and I designed the foundation's data governance strategy and cloud infrastructure. My goal is to build and evaluate models and assessments that are **valid, reliable and fair**.
 
-I am a member of the **American Educational Research Association (AERA)**, the **National Council on Measurement in Education (NCME)**, IEEE, ACM and PMI.
+I am a member of the **American Educational Research Association (AERA)**, the **National Council on Measurement in Education (NCME)**, IEEE and ACM.
 
-[Download CV (PDF)](/files/Kevin_Gonzalez_Ortega_CV.pdf){: .btn .btn--primary} [Google Scholar]({{ site.author.googlescholar }}){: .btn .btn--info} [ORCID]({{ site.author.orcid }}){: .btn .btn--info}
+[Download CV (PDF)](/files/Kevin_Gonzalez_Ortega_CV_Academic.pdf){: .btn .btn--primary} [Google Scholar]({{ site.author.googlescholar }}){: .btn .btn--info} [ORCID]({{ site.author.orcid }}){: .btn .btn--info}
 
 ## Research interests
 

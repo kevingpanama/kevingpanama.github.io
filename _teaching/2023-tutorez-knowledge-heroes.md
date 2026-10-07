@@ -7,6 +7,8 @@ venue: "Tutorez"
 date: 2023-04-01
 location: "Panama City, Panama"
 excerpt: "Tutor, Apr 2023 – Jul 2023. Daily individual tutoring in mathematics, physics and chemistry for public-school students from across Panama (Héroes del Conocimiento)."
+group: other
+citation: "Tutorez, Panama City · Apr 2023 – Jul 2023 · Mathematics, physics and chemistry"
 ---
 
 Tutor, Knowledge Heroes (*Héroes del Conocimiento*) Free Tutoring Program, April 2023 – July 2023.

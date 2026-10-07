@@ -77,10 +77,19 @@ Professional experience
 
 Teaching experience
 ======
-  <ul>{% for post in site.teaching reversed %}
+**Universidad Interamericana de Puerto Rico, Panama Campus**, City of Knowledge, Panama City · Adjunct Professor (part-time), Aug 2023 – Dec 2024
+
+Taught seven undergraduate courses (nine sections) in mathematics and computer science; developed course materials, delivered lectures, practice sessions and tutorials, and assessed student progress through exams, assignments and projects. [Teaching overview →](/teaching/)
+
+  <ul>{% assign courses = site.teaching | where: "group", "university" | sort: "date" | reverse %}{% for post in courses %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
+**Tutoring and workshops**
+
+  <ul>{% assign others = site.teaching | where: "group", "other" | sort: "date" | reverse %}{% for post in others %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
 
 Research and projects
 ======

@@ -3,10 +3,42 @@ layout: archive
 title: "Teaching"
 permalink: /teaching/
 author_profile: true
+redirect_from:
+  - /teaching/2023-uip-adjunct
 ---
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
+<p>I taught <strong>seven undergraduate courses (nine sections)</strong> in mathematics and computer science as an Adjunct Professor at <strong>Universidad Interamericana de Puerto Rico, Panama Campus</strong> (Aug 2023 – Dec 2024). The courses ranged from general-education algebra to upper-level electives in web development and artificial intelligence for video games. I developed the course materials, delivered lectures, practice sessions and tutorials, and assessed student progress through exams, assignments and projects, with individualized feedback and academic advising.</p>
+
+<p>Before that, I tutored public-school students in mathematics, physics and chemistry, and designed and taught programming and database workshops at Universidad Tecnológica de Panamá.</p>
+
+<h2>Courses at a glance</h2>
+
+<table>
+  <thead>
+    <tr><th>Term</th><th>Mathematics</th><th>Computer science</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Fall 2023</td><td><a href="{{ base_path }}/teaching/2023-math-1500-precalculus">MATH 1500 Precalculus</a></td><td><a href="{{ base_path }}/teaching/2023-comp-2501-discrete-structures-i">COMP 2501 Discrete Computer Structures I</a></td></tr>
+    <tr><td>Spring 2024</td><td><a href="{{ base_path }}/teaching/2024-gema-1200-fundamentals-of-algebra">GEMA 1200 Fundamentals of Algebra</a><br/><a href="{{ base_path }}/teaching/2024-math-2251-calculus-i">MATH 2251 Calculus I</a></td><td><a href="{{ base_path }}/teaching/2024-comp-2502-discrete-structures-ii">COMP 2502 Discrete Computer Structures II</a></td></tr>
+    <tr><td>Fall 2024</td><td><a href="{{ base_path }}/teaching/2024-gema-1200-fundamentals-of-algebra">GEMA 1200 Fundamentals of Algebra</a><br/><a href="{{ base_path }}/teaching/2023-math-1500-precalculus">MATH 1500 Precalculus</a></td><td><a href="{{ base_path }}/teaching/2024-comp-3015-web-programming-with-databases">COMP 3015 Web Programming with Databases</a><br/><a href="{{ base_path }}/teaching/2024-game-3400-ai-for-video-games">GAME 3400 Artificial Intelligence for Video Games</a></td></tr>
+  </tbody>
+</table>
+
+<p>The mathematics courses form the university's core sequence, from <strong>Fundamentals of Algebra</strong> to <strong>Precalculus</strong> to <strong>Calculus I</strong>. Precalculus is also the entry point to the two-semester <strong>Discrete Computer Structures</strong> sequence for computer science majors, which I taught in consecutive terms.</p>
+
+<h2>University courses</h2>
+<p><em>Universidad Interamericana de Puerto Rico, Panama Campus · Adjunct Professor (part-time) · Aug 2023 – Dec 2024</em></p>
+
+{% assign courses = site.teaching | where: "group", "university" | sort: "date" | reverse %}
+{% for post in courses %}
+  {% include archive-single.html %}
+{% endfor %}
+
+<h2>Tutoring and workshops</h2>
+
+{% assign others = site.teaching | where: "group", "other" | sort: "date" | reverse %}
+{% for post in others %}
   {% include archive-single.html %}
 {% endfor %}
